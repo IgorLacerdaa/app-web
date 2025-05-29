@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Girls Security</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=e911_emergency" />
+</head>
+<body>
+    <button onclick="getLocation()">Obter Localização</button>
+  <div id="app-container">
+    <header>
+      <h1>Girls Security</h1>
+    </header>
+    <main>
+      <section id="tab-mapa" class="tab-content active">
+        <div id="map"></div>
+        <button id="denunciarBtn">Fazer denúncia</button>
+        <button id="panicoBtn">
+          <span class="material-symbols-outlined">
+            e911_emergency
+          </span>
+        </button>
+      </section>
+      <section id="tab-denuncias" class="tab-content">
+        <h2>Minhas denúncias</h2>
+        <div id="minhasDenuncias">
+          <!-- Lista de denúncias do usuário -->
+        </div>
+      </section>
+      <section id="tab-info" class="tab-content">
+        <h2>Informações</h2>
+        <p>Este aplicativo ajuda a alertar sobre ruas perigosas e escuras.</p>
+      </section>
+    </main>
+    <nav class="tabbar">
+      <button class="tab-btn active" data-tab="tab-mapa">Mapa</button>
+      <button class="tab-btn" data-tab="tab-denuncias">Denúncias</button>
+      <button class="tab-btn" data-tab="tab-info">Info</button>
+    </nav>
+  </div>
+  
+  <!-- Modal Pop-up de Denúncia -->
+  <div id="popupDenuncia" class="modal">
+    <div class="modal-content">
+      <button onclick="fecharPopupDenuncia()" class="close-btn">X</button>
+      <h2>Fazer denúncia</h2>
+      <form id="formDenuncia">
+        <label for="descricao">Descrição:</label><br>
+        <textarea id="descricao" rows="4" cols="30"></textarea><br><br>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Pop-up de Pânico -->
+  <div id="popupPanico" class="modal">
+    <div class="modal-content">
+      <button onclick="fecharPopupPanico()" class="close-btn">X</button>
+      <h2>Alerta de Pânico</h2>
+      <p>Sua solicitação de emergência foi enviada. Fique calma, ajuda está a caminho!</p>
+    </div>
+  </div>
+
+  <!-- Resto dos scripts do seu app -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
+  <script src="tabs.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVoGVkhLEkodWlPsZm5SHjn8LJlNYM2cc&callback=initMap" async defer></script>
+  <script>
+    // Abrir o pop-up de denúncia
+    document.getElementById('denunciarBtn').onclick = function() {
+      document.getElementById('popupDenuncia').classList.add('active');
+    };
+
+    // Fechar o pop-up de denúncia
+    function fecharPopupDenuncia() {
+      document.getElementById('popupDenuncia').classList.remove('active');
+    }
+
+    // Fechar pop-up ao enviar o formulário de denúncia
+    document.getElementById('formDenuncia').onsubmit = function(e) {
+      e.preventDefault();
+      console.log("Cliquei no botão de enviar denúncia");
+      // Aqui você pode adicionar o código para salvar a denúncia
+      fecharPopupDenuncia();
+      alert('Denúncia enviada!');
+    };
+
+    // Abrir o pop-up de pânico
+    document.getElementById('panicoBtn').onclick = function() {
+      document.getElementById('popupPanico').classList.add('active');
+    };
+
+    // Fechar o pop-up de pânico
+    function fecharPopupPanico() {
+      document.getElementById('popupPanico').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

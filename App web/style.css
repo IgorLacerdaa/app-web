@@ -1,0 +1,207 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f7f7f7;
+  height: 100%;
+}
+
+#app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  background: #d32f6e;
+  color: #fff;
+  padding: 10px 0 0;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+
+main {
+  flex: 1 1 auto;
+  position: relative;
+  overflow-y: auto;
+  padding: 10px 0 80px 0; /* espaço para o menu */
+}
+
+#map {
+  width: 98vw;
+  max-width: 1000px;
+  height: 480px;        /* altura aumentada */
+  min-height: 70vh;
+  margin: 0 auto 20px auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  background: #eee;
+}
+
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+
+#denunciarBtn {
+  display: block;
+  margin: 20px auto 0 auto;
+  width: 90vw;
+  max-width: 600px;
+  padding: 16px;
+  background: #d32f6e;
+  color: #fff;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+}
+#panicoBtn {
+  position: fixed;
+  left: 10px;
+  top: 75vh;
+  width: 60px;
+  height: 60px;
+  z-index: 1100;
+  margin: -10px 0px 0px;
+  padding: 10px;
+  background: #ff0404;
+  color: #fdfdfd;
+  font-size: 1.8;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+  vertical-align: middle;
+  margin-right: 6px;
+  
+  
+  /* resto do estilo igual acima */
+
+}
+#panicoBtn:active {
+  transform: scale(0.96);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  filter: brightness(0.95);
+}
+
+#denunciarBtn:active {
+  transform: scale(0.96);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  filter: brightness(0.95);
+}
+
+.modal {
+  display: none; /* Não mostrar por padrão */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Mostrar modal quando ativado com JS */
+.modal.active {
+  display: flex;
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  background: #fff;
+  padding: 2em;
+  border-radius: 12px;
+  min-width: 320px;
+  max-width: 95vw;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  position: relative;
+  animation: fadeIn 0.2s;
+}
+
+/* Botão de fechar */
+.close-btn {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px; height: 32px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.close-btn:hover {
+  background: #c0392b;
+}
+
+/* Animação opcional */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background: #fff;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-around;
+  z-index: 100;
+  box-shadow: 0 -1px 10px rgba(0,0,0,0.07);
+  height: 60px;
+}
+
+.tab-btn {
+  flex: 1 1 33%;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #666;
+  padding: 8px 0 2px 0;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+  outline: none;
+}
+.tab-btn.active {
+  color: #d32f6e;
+  font-weight: bold;
+  border-top: 3px solid #d32f2f;
+  background: #fff6f6;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 0,
+  'GRAD' -25,
+  'opsz' 40,
+}
+
+
+@media (max-width: 480px) {
+  #map {
+    width: 98vw;
+    max-width: 98vw;
+    height: 300px;    /* altura menor em telas pequenas */
+  }
+  .tab-btn { font-size: 1rem; }
+  #denunciarBtn {
+    width: 98vw;
+    max-width: 98vw;
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
